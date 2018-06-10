@@ -5,32 +5,42 @@
 </ion-header>
 
 <ion-content padding class="home">
-  <ion-grid >
-    <ion-row>
-      <div *ngIf="weather" >
-        <ion-col offset-50> 
-          <h3 class="location">{{weather.display_location.full}}</h3>
-          <div><img src="{{weather.icon_url}}" alt=""></div>
-          <h4>{{weather.weather}}</h4>
-          <h1 class="temp">{{weather.temp_c}}&deg;C</h1>
-          <h5>Feels like {{weather.feelslike_c}}&deg;C</h5>
-        </ion-col> 
-      </div>
-    </ion-row>
-    <ion-row >
-      <div *ngIf="pred">
-        <ion-col> 
-            <h5 class="direction">{{pred.route.title}}</h5>
-            <h5 class="stop">@{{pred.stop.title}}</h5>
-            <ion-list>
-              <ion-item-sliding *ngFor="let value of vals">
-                <ion-item >
-                  {{value.minutes}}:{{value.seconds}}
-                </ion-item>
-              </ion-item-sliding>    
-            </ion-list>
-        </ion-col>
+  <ion-refresher on-refresh="refresh()">
+      <ion-refresher-content
+      pullingIcon="arrow-dropdown"
+      pullingText="Pull to refresh"
+      refreshingSpinner="circles"
+      refreshingText="Refreshing...">
+    </ion-refresher-content>
+  </ion-refresher>
+    <ion-grid class="grid">
+      <ion-row *ngIf="weather">
+        <div class="weatherdiv">
+          <ion-col width-50 offset-25>
+            <h3 class="location">{{weather.display_location.full}}</h3>
+            <div class="img"><img src="{{weather.icon_url}}" alt=""></div>
+            <h4 class="weather">{{weather.weather}}</h4>
+            <h1 class="temp">{{weather.temp_c}}&deg;C</h1>
+            <h5 class="feelslike">Feels like {{weather.feelslike_c}}&deg;C</h5>
+            
+          </ion-col>
         </div>
-    </ion-row>
-  </ion-grid>
+      </ion-row>
+      <ion-row *ngIf="pred">
+        <div  class="busdiv">
+          <ion-col>
+              <h5 class="route">{{pred.route.title}}</h5>
+              <h5 class="stop">@{{pred.stop.title}}</h5>
+              <ion-list>
+                <ion-item-sliding *ngFor="let value of vals">
+                  <ion-item >
+                  <strong class="predictions">{{value.minutes}}:{{value.seconds}}</strong>
+                  </ion-item>
+                </ion-item-sliding>
+              </ion-list>
+          </ion-col>
+          </div>
+      </ion-row>
+    </ion-grid>
+  
 </ion-content>

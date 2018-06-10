@@ -9,3 +9,30 @@
 .tabs-md .tabs-button-icon{
     color:rgb(216, 213, 213);
 }
+.temp{
+    font-size: 50px;
+    text-align: center;
+    font-weight: bolder;
+}
+.weatherdiv, .busdiv, .location,.img, .weather, .feelslike, .route, .stop{
+    text-align: center;
+}
+.feelslike, .weather{
+    font-weight: normal;
+}
+.img img{
+    width: 90px;
+}
+.route{
+    font-size: 30px;
+    font-weight: bold;
+}
+.stop{
+    font-size: 20px;
+    font-weight: normal;
+}
+.predictions{
+    font-size: 35px;
+    font-weight: bolder;
+    color: rgb(199, 4, 4);
+}
